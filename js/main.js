@@ -44,8 +44,8 @@ function InitHashKeys() {
 function InitSq120To64() {
 
   var index = 0;
-  var file = FILE.FILE_A;
-  var rank = RANK.RANK_1;
+  var file = FILES.FILE_A;
+  var rank = RANKS.RANK_1;
   var sq = SQUARES.A1;
   var sq64 = 0;
 
@@ -71,4 +71,5 @@ function init() {
   console.log("init() called");
   InitFilesRanksBrd();
   InitHashKeys();
+  InitSq120To64();
 }

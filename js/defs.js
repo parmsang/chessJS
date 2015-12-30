@@ -74,3 +74,7 @@ function SQ64 (sq120) {
 function SQ120 (sq64) {
   return Sq64ToSq120[(sq64)];
 }
+
+function PCEINDEX(pce, pceNum) {
+  return (pce * 10 + pceNum);
+}
