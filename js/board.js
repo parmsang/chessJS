@@ -235,4 +235,21 @@ function ParseFen(fen) {
 
   GameBoard.posKey = GeneratePosKey();
   UpdateListMaterial();
+  SqAttacked(21, 0);
+}
+
+function SqAttacked(sq, side) {
+  var pce;
+  var t_sq;
+  var index;
+
+  if(side == COLOURS.WHITE) {
+    if (GameBoard.pieces[sq -11] == PIECES.wP || GameBoard.pieces[sq -9] == PIECES.wP) {
+      return BOOL.TRUE;
+    }
+  } else {
+      if (GameBoard.pieces[sq + 11] == PIECES.bP || GameBoard.pieces[sq + 9] == PIECES.bP) {
+        return BOOL.TRUE;
+    }
+  }
 }
