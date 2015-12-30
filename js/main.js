@@ -1,24 +1,8 @@
 $(function() {
   init();
   console.log("Main Init called");
-
-  var piece1 = RAND_32();
-  var piece2 = RAND_32();
-  var piece3 = RAND_32();
-  var piece4 = RAND_32();
-
-  var key = 0;
-  key ^= piece1;
-  key ^= piece2;
-  key ^= piece3;
-  key ^= piece4;
-  console.log("key:" + key.toString(16));
-  key = 0;
-  key ^= piece4;
-  key ^= piece2;
-  key ^= piece1;
-  key ^= piece3;
-  console.log("key:" + key.toString(16));
+  ParseFen(START_FEN);
+	PrintBoard();
 
 });
 
@@ -78,8 +62,8 @@ function InitSq120To64() {
     Sq64ToSq120[index] = 120;
   }
 
-  for(rank = RANKS.RANK_1; rank <= RANKS.RANK_8; ++rank) {
-    for(file = FILES.FILE_A; file <= FILES.FILE_H; ++file) {
+  for (rank = RANKS.RANK_1; rank <= RANKS.RANK_8; ++rank) {
+    for (file = FILES.FILE_A; file <= FILES.FILE_H; ++file) {
       sq = FR2SQ(file, rank);
       Sq64ToSq120[sq64] = sq;
       Sq120ToSq64[sq] = sq64;
