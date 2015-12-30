@@ -143,4 +143,31 @@ function ParseFen(fen) {
 		fenCnt++;
 	}
 
+  GameBoard.side = (fen[fenCnt] == 'w') ? COLOURS.WHITE : COLOURS.BLACK;
+  fenCnt += 2;
+
+  for (i = 0; i < 4; i++) {
+        if (fen[fenCnt] == ' ') {
+            break;
+        }
+    switch(fen[fenCnt]) {
+      case 'K': GameBoard.castlePerm |= CASTLEBIT.WKCA; break;
+      case 'Q': GameBoard.castlePerm |= CASTLEBIT.WQCA; break;
+      case 'k': GameBoard.castlePerm |= CASTLEBIT.BKCA; break;
+      case 'q': GameBoard.castlePerm |= CASTLEBIT.BQCA; break;
+      default:	     break;
+        }
+    fenCnt++;
+  }
+  fenCnt++;
+
+  if (fen[fenCnt] != '-') {
+    file = fen[fenCnt].charCodeAt() - 'a'.charCodeAt();
+    rank = fen[fenCnt + 1].charCodeAt() - '1'.charCodeAt();
+    console.log("fen[fenCnt]:" + fen[fenCnt] + " File:" + file + " Rank:" + rank);
+    GameBoard.enPas = FR2SQ(file,rank);
+    }
+
+  GameBoard.posKey = GeneratePosKey();
+
 }
