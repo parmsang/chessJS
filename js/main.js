@@ -48,6 +48,20 @@ function InitFilesRanksBrd() {
 
 }
 
+function InitHashKeys() {
+    var index = 0;
+
+	for(index = 0; index < 14 * 120; ++index) {
+		PieceKeys[index] = RAND_32();
+	}
+
+	SideKey = RAND_32();
+
+	for(index = 0; index < 16; ++index) {
+		CastleKeys[index] = RAND_32();
+	}
+}
+
 function InitSq120To64() {
 
   var index = 0;
@@ -72,20 +86,6 @@ function InitSq120To64() {
       sq64++;
     }
   }
-}
-
-function InitHashKeys() {
-    var index = 0;
-
-	for(index = 0; index < 14 * 120; ++index) {
-		PieceKeys[index] = RAND_32();
-	}
-
-	SideKey = RAND_32();
-
-	for(index = 0; index < 16; ++index) {
-		CastleKeys[index] = RAND_32();
-	}
 }
 
 function init() {
