@@ -235,7 +235,28 @@ function ParseFen(fen) {
 
   GameBoard.posKey = GeneratePosKey();
   UpdateListMaterial();
-  SqAttacked(21, 0);
+  PrintSqAttacked();
+}
+
+function PrintSqAttacked() {
+
+	var sq,file,rank,piece;
+
+	console.log("\nAttacked:\n");
+
+	for(rank = RANKS.RANK_8; rank >= RANKS.RANK_1; rank--) {
+		var line =((rank+1) + "  ");
+		for(file = FILES.FILE_A; file <= FILES.FILE_H; file++) {
+			sq = FR2SQ(file,rank);
+			if(SqAttacked(sq, GameBoard.side) == BOOL.TRUE) piece = "X";
+			else piece = "-";
+			line += (" " + piece + " ");
+		}
+		console.log(line);
+	}
+
+	console.log("");
+
 }
 
 function SqAttacked(sq, side) {
@@ -264,7 +285,7 @@ function SqAttacked(sq, side) {
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
     while (pce != SQUARES.OFFBOARD) {
-      if (pce != PIECE.EMPTY) {
+      if (pce != PIECES.EMPTY) {
         if(PieceRookQueen[pce] == BOOL.TRUE && PieceCol[pce] == side) {
           return BOOL.TRUE;
         }
@@ -280,7 +301,7 @@ function SqAttacked(sq, side) {
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
     while (pce != SQUARES.OFFBOARD) {
-      if (pce != PIECE.EMPTY) {
+      if (pce != PIECES.EMPTY) {
         if(PieceBishopQueen[pce] == BOOL.TRUE && PieceCol[pce] == side) {
           return BOOL.TRUE;
         }
