@@ -12,6 +12,7 @@ function GenerateMoves() {
 	var pceIndex;
 	var pce;
 	var t_sq;
+	var dir;
 
 	if(GameBoard.side == COLOURS.WHITE) {
 		pceType = PIECES.wP;
@@ -112,7 +113,31 @@ function GenerateMoves() {
 		}
 	}
 
-	// get pce for side wN, wK
-	// loop all dir for pce -> need to know num dir for pce
+	pceIndex = LoopNonSlideIndex[GameBoard.side];
+	pce = LoopNonSlidePce[pceIndex++];
 
+	while (pce != 0) {
+		for(pceNum = 0; pceNum < GameBoard.pceNum[pce]; ++pceNum) {
+			sq = GameBoard.pList[PCEINDEX(pce, pceNum)];
+
+			for(index = 0; index < DirNum[pce]; index++) {
+				dir = PceDir[pce][index];
+				t_sq = sq + dir;
+
+				if(SQOFFBOARD(t_sq) == BOOL.TRUE) {
+					continue;
+				}
+
+				if(GameBoard.pieces[t_sq] != PIECES.EMPTY) {
+					if(PieceCol[GameBoard.pieces[t_sq]] != GameBoard.side) {
+						// add capture
+					}
+				} else {
+					// quiet move
+				}
+			}
+		}
+		pce = LoopNonSlidePce[pceIndex++];
+	}
+	
 }
